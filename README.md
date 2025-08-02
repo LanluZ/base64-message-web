@@ -36,6 +36,7 @@
 2. Linux
    ```bash
    pip install gunicorn
+   pip install gevent
    gunicorn -w 4 -k gevent -b 0.0.0.0:[端口] --preload run:app
    ```
 3. Windows
