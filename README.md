@@ -29,14 +29,16 @@
 
 ### 部署
 
+**明文在公网上传输是十分不安全的做法, 部署前请务必准备好SSL证书**
+
 1. 部署前需创建`instance`目录并写入管理员信息
 
-1. Linux
+2. Linux
    ```bash
    pip install gunicorn
    gunicorn -w 4 -k gevent -b 0.0.0.0:[端口] --preload run:app
    ```
-2. Windows
+3. Windows
    ```bash
    python run.py 
    ```
