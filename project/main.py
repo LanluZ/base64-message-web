@@ -94,7 +94,9 @@ def get_message(message_id):
     db = get_db()
     message = db.execute('SELECT content FROM messages WHERE id = ?', (message_id,)).fetchone()
     if message:
-        encoded_content = base64.b64encode(message['content'].encode()).decode()
+        # 统一换行符为\n
+        normalized_content = message['content'].replace('\r\n', '\n')
+        encoded_content = base64.b64encode(normalized_content.encode()).decode()
         return encoded_content
     else:
         abort(404)
