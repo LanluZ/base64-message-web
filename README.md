@@ -22,11 +22,18 @@
 - Python 3.6+
 - pip (Python包管理器)
 
-### 安装步骤
+### 部署
 
-1. 运行应用程序
+1. 部署前需创建`instance`目录并写入管理员信息
+
+1. Linux
    ```bash
-   python run.py
+   pip install gunicorn
+   gunicorn -w 4 -k gevent -b 0.0.0.0:[端口] --preload run:app
+   ```
+2. Windows
+   ```bash
+   python run.py 
    ```
 
 ### 关于`instance`目录
@@ -36,3 +43,25 @@
 - `data/admin.json`: 管理员用户凭据
 - `data/messages.db`: SQLite数据库，存储应用程序的消息数据
 - `config.py` (可选): 覆盖默认配置的自定义配置文件
+
+```json
+{
+    "admins": [
+        {
+            "username": "1",
+            "password": "1",
+            "display_name": "1",
+            "role": "super_admin",
+            "email": "admin@example.com"
+        },
+        {
+            "username": "2",
+            "password": "2",
+            "display_name": "2",
+            "role": "editor",
+            "email": "editor@example.com"
+        }
+    ]
+}
+
+```
