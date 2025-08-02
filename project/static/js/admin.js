@@ -102,4 +102,24 @@ $(document).ready(function() {
                 showAlert(jqXHR.responseJSON.error || '发生未知错误。', 'danger');
             });
     });
+
+    // Toggle message content (expand/collapse)
+    $(document).on('click', '.toggle-content', function() {
+        const container = $(this).closest('.message-content-container');
+        const collapsedContent = container.find('.message-content-collapsed');
+        const fullContent = container.find('.message-content-full');
+        const action = $(this).data('action');
+        
+        if (action === 'expand') {
+            collapsedContent.hide();
+            fullContent.show();
+            $(this).html('<i class="fas fa-chevron-up"></i> 折叠');
+            $(this).data('action', 'collapse');
+        } else {
+            fullContent.hide();
+            collapsedContent.show();
+            $(this).html('<i class="fas fa-chevron-down"></i> 展开');
+            $(this).data('action', 'expand');
+        }
+    });
 });

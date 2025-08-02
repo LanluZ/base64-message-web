@@ -68,7 +68,17 @@
                             {% for message in messages %}
                             <tr>
                                 <td>{{ message['id'] }}</td>
-                                <td>{{ message['content'] }}</td>
+                                <td>
+                                    <div class="message-content-container">
+                                        <div class="message-content-collapsed">{{ message['content'][:50] }}{% if message['content']|length > 50 %}...{% endif %}</div>
+                                        <div class="message-content-full" style="display: none;">{{ message['content'] }}</div>
+                                        {% if message['content']|length > 50 %}
+                                        <button class="btn btn-sm btn-link toggle-content" data-action="expand">
+                                            <i class="fas fa-chevron-down"></i> 展开
+                                        </button>
+                                        {% endif %}
+                                    </div>
+                                </td>
                                 <td>
                                     <a href="{{ url_for('main.get_message', message_id=message['id']) }}" target="_blank" class="text-decoration-none">
                                         /{{ message['id'] }}
