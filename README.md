@@ -37,7 +37,7 @@
    ```bash
    pip install gunicorn
    pip install gevent
-   gunicorn -w 4 -k gevent -b 0.0.0.0:[端口] --preload run:app
+   gunicorn -w 4 -k gevent -b 0.0.0.0:[端口] --certfile=[cert.pem] --keyfile=[key.pem]  --preload run:app
    ```
 3. Windows
    ```bash
